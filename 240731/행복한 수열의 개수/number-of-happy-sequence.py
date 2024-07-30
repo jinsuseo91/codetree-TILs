@@ -17,7 +17,7 @@ for i in range(n):
         cnt += 1
 #열
 for j in range(n):
-    hap = 0
+    hap = 1
     prev_num = d[0][j] 
     for i in range(1, n):
         if prev_num == d[i][j]:
