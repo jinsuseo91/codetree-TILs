@@ -9,4 +9,4 @@ for j in range(t):
         array[k] = array[k-1]
     array[0] = temp
 print(*array[0:n])
-print(*array[n:6])
+print(*array[n:2*n])
