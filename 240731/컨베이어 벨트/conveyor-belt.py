@@ -7,5 +7,5 @@ for i in range(t):
     for k in range(2*n-1, 0, -1):
         array[k] = array[k-1]
         array[0] = temp
-print(*array[0:3])
-print(*array[3:6])
+print(*array[0:n])
+print(*array[n:6])
