@@ -1,8 +1,9 @@
 import sys
-
+BLANK = 0
 n = int(sys.stdin.readline())
 
 arr = [list(map(int,sys.stdin.readline().split())) for _ in range(n)]
+temp = [[0 for _ in range(n)] for _ in range(n)]
 
 r, c = map(int, sys.stdin.readline().split())
 r -= 1
@@ -21,10 +22,15 @@ for i in range(boom):
         arr[r][c - i] = 0
 
 for j in range(n):
-    for i in range(n-1, 0, -1):
-        if arr[i][j] == 0:
-            arr[i][j] = arr[i-1][j]
-            arr[i-1][j] = 0
+    tempRow = n - 1
+    for i in range(n-1, -1, -1):
+        if arr[i][j] != 0:
+            temp[tempRow][j] = arr[i][j]
+            tempRow -= 1
+
+for j in range(n):
+    for i in range(n):
+        arr[i][j] = temp[i][j]
 
 for i in range(n):
     for j in range(n):
