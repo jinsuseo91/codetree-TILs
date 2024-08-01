@@ -1,5 +1,5 @@
 a = int(input())
 c = "t"
 d = "f"
-b = c if a = 1 else d
+b = (a == 1) ? "t" : "f"
 print(b)
