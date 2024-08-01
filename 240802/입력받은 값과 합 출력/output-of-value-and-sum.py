@@ -1,3 +1,3 @@
 a, b = int(input()) 
 c = a+b 
-print(f"{a}, {b}, {c}")
+print(f"{a} {b} {c}")
