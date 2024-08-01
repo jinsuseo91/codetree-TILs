@@ -15,7 +15,7 @@ for i in range(boom):
         arr[r + i][c] = 0
     if 0 <= r - i <= n:
         arr[r - i][c] = 0
-    if 0<= c + i <= n:
+    if 0 <= c + i <= n:
         arr[r][c + i] = 0
     if 0 <= c - i <= n:
         arr[r][c - i] = 0
