@@ -22,6 +22,7 @@ def rotate():
     #print(arr)
 
 def drop():
+    remove_()
     for j in range(n):
         for i in range(n-1, 0, -1):
             if not arr[i][j] or arr[i][j] != arr[i-1][j]:
