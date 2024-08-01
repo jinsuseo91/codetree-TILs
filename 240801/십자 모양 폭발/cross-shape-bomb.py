@@ -21,7 +21,7 @@ for i in range(boom):
         arr[r][c - i] = 0
 
 for j in range(n):
-    for i in range(-1,n):
+    for i in range(n-1, 0, -1):
         if arr[i][j] == 0:
             arr[i][j] = arr[i-1][j]
             arr[i-1][j] = 0
