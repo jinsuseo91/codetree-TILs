@@ -1,8 +1,11 @@
-a=int(input())
-b=a
+a = int(input())
 
-if a%2==1:
-    b=a+3
+if a % 2 == 1:
 
-if b%3==0:
-    print(int(b/3))
+    a = a + 3
+
+if a % 3 == 0:
+
+    a = a//3
+
+print(a)
