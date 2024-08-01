@@ -1,8 +1,10 @@
-n = int(input())
+import sys
 
-arr = [list(map(int, input().split())) for _ in range(n)]
+n = int(sys.stdin.readline())
 
-r, c = map(int, input().split())
+arr = [list(map(int,sys.stdin.readline().split())) for _ in range(n)]
+
+r, c = map(int, sys.stdin.readline().split())
 r -= 1
 c -= 1
 
