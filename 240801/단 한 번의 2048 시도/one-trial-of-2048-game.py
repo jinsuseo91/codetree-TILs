@@ -21,8 +21,8 @@ def rotate():
             temp[i][j] = 0
     #print(arr)
 
-def drop():
-    remove_()
+def mul():
+    drop()
     for j in range(n):
         for i in range(n-1, 0, -1):
             if not arr[i][j] or arr[i][j] != arr[i-1][j]:
@@ -30,11 +30,11 @@ def drop():
             elif arr[i][j] == arr[i-1][j]:
                 arr[i][j] *= 2
                 arr[i-1][j] = 0
-    remove_()
+    drop()
     for _ in range(4 - Dir[direction]):
         rotate()
 
-def remove_():
+def drop():
     for i in range(n):
         for j in range(n):
             temp[i][j] = 0
@@ -51,7 +51,7 @@ def remove_():
 def rotate2(num):
     for i in range(num):
         rotate()
-    drop()
+    mul()
 
 rotate2(Dir[direction])
 
