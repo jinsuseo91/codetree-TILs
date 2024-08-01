@@ -1,0 +1,30 @@
+n = int(input())
+
+arr = [list(map(int, input().split())) for _ in range(n)]
+
+r, c = map(int, input().split())
+r -= 1
+c -= 1
+
+boom = arr[r][c]
+
+for i in range(boom):
+    if r + i <= n:
+        arr[r + i][c] = 0
+    if r - i <= n:
+        arr[r - i][c] = 0
+    if c + i <= n:
+        arr[r][c + i] = 0
+    if c - i <= n:
+        arr[r][c - i] = 0
+
+for j in range(n):
+    for i in range(n):
+        if arr[i][j] == 0:
+            arr[i][j] = arr[i-1][j]
+            arr[i-1][j] = 0
+
+for i in range(n):
+    for j in range(n):
+        print(arr[i][j], end=' ')
+    print()
