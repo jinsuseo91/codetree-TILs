@@ -11,13 +11,13 @@ c -= 1
 boom = arr[r][c]
 
 for i in range(boom):
-    if r + i < n:
+    if r + i <= n:
         arr[r + i][c] = 0
-    if r - i < n:
+    if r - i <= n:
         arr[r - i][c] = 0
-    if c + i < n:
+    if c + i <= n:
         arr[r][c + i] = 0
-    if c - i < n:
+    if c - i <= n:
         arr[r][c - i] = 0
 
 for j in range(n):
