@@ -1,3 +1,4 @@
 a = 97
 b = 13
-print(a, " - ", b " = ", a-b )
+c = a - b
+print(a, " - ", b " = ",c )
