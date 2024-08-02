@@ -7,7 +7,12 @@ for i in range(n):
         for k in range(i, j + 1):
             sum_ += arr[k]
         avg = sum_ // (j - i + 1)
-        if avg in arr:
+        exists = False
+        for k in range(i, j + 1):
+            if arr[k] == avg:
+                exists = True
+
+        if exists:
             cnt += 1
 
 print(cnt)
