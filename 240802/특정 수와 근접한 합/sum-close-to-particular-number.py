@@ -1,18 +1,18 @@
-S, N = map(int, input().split())
+import sys
 
-numbers = list(map(int, input().split()))
+MAX_INT = sys.maxsize
 
-min_result = sum(numbers)
+n, s = map(int, input().split())
+arr = list(map(int, input().split()))
 
-for i in range(S) :
-    for j in range(i+1, S-1) :
-        number = list(numbers)
-        del number[i]
-        del number[j]
-        plus = 0
-        for k in range(len(number)) :
-            plus += number[k]
-        re = abs(N - plus)
-        min_result = min(min_result, re)
+total_sum = sum(arr)
 
-print(min_result)
+min_val = MAX_INT
+for i in range(len(arr)):
+    for j in range(i + 1, len(arr)):
+        sum_val = total_sum - ((2 * arr[i]) + (2 * arr[j]))
+        diff = abs(s - sum_val)
+
+        min_val = min(min_val, diff)
+
+print(min_val)
