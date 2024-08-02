@@ -1,7 +1,8 @@
+import sys
 n = int(input())
 arr = list(map(int, input().split()))
 
-min_sum = 10000000
+min_sum = -sys.maxsize
 sum_ = 0
 #n은 방문할 집 번호
 for i in range(n):
