@@ -29,11 +29,13 @@ start_day_index = day_list.index(day)
 # 첫 번째 날짜가 시작 요일 기준으로 몇 번째 요일인지 계산
 start_day_offset = (start_day_index - (d1 % 7) + 7) % 7
 
-# 첫 번째 요일에 해당하는 날짜 계산
-first_occurrence_day = (7 - start_day_offset) % 7
-
 # 특정 요일이 범위 내에 몇 번 등장하는지 계산
-day_count = (total_days - first_occurrence_day + 6) // 7
+day_count = 0
+current_day = start_day_offset
+for i in range(total_days):
+    if day_list[current_day % 7] == day:
+        day_count += 1
+    current_day += 1
 
 # 결과 출력
 print(day_count)
