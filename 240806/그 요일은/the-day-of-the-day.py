@@ -2,22 +2,17 @@ m1, d1, m2, d2 = map(int, input().split())
 day = input()
 days = 0
 num_of_days = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-for i in range(m1, m2):
-    if i in [1, 3, 5, 7, 8, 10, 12] :
-        days +=31
-    elif i == 2 :
-        days += 29
-    else :
-        days += 30
-
-days = days + d2 - d1 + 1
-
-n = 0
 day_list = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-if day in day_list:
-    n = day_list.index(day)
+for i in range(m1, m2):
+    days += num_of_days[i]
+days = days + d2 - d1 + 1
 
-ans = (days - n) // 7 + 1
-print(ans)
+n = day_list.index(day)
+
+start_day_offset = (n + d1 - 1) % 7
+
+total_day_occurrences = (days - (7 - start_day_offset) + 6) // 7 
+
+# 결과 출력
+print(total_day_occurrences)
