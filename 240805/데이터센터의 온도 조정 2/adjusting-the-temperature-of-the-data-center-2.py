@@ -19,8 +19,8 @@ def bb(t):
         to += aa(ta[i], tb[i], t)
     return to
 
-max_out = 0
+out=0
 for t in range(max_t+1):
-    max_out = max(max_out, bb(t))
+    out=max(out,bb(t))
 
 print(out)
