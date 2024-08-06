@@ -7,8 +7,8 @@ memo = {}
 
 def calc():
     sum_ = 0
-    for i in range(1, m):
-        sum_ ^= ans[i]
+    for i in ans:
+        sum_ ^= i
     return sum_
 
 def choose(curr_num, idx):
