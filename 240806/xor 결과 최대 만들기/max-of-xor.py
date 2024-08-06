@@ -5,8 +5,10 @@ ans = []
 max_ = 0
 
 def calc():
-    i, j, k = ans[0], ans[1], ans[2]
-    return i^j^k
+    sum_ = 0
+    for i in ans:
+        sum_ ^= i
+    return sum_
 
 
 def choose(curr_num):
