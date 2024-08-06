@@ -3,6 +3,7 @@ n, m = map(int, input().split())
 arr = list(map(int, input().split()))
 ans = []
 max_ = 0
+memo = {}
 
 def calc():
     sum_ = 0
@@ -10,9 +11,13 @@ def calc():
         sum_ ^= i
     return sum_
 
-
 def choose(curr_num):
     global max_
+
+    key = tuple(ans)
+    if key in memo:
+        return memo[key]
+
     if curr_num == m + 1:
         result = calc()
         max_ = max(max_, result)
@@ -22,5 +27,6 @@ def choose(curr_num):
         ans.append(i)
         choose(curr_num + 1)
         ans.pop()
+
 choose(1)
 print(max_)
