@@ -1,24 +1,19 @@
-import sys
-
-si = sys.stdin.readline
-
 # n 개의 칸을 색칠 1 <= n <= 10
-n = int(si())
+n = int(input())
 
 # 현재 까지 색칠한 칸들의 숫자 저장
-permutation = []
+colored = []
 
 # n * n 행렬 입력 받는 방법
 # zero padding 필요
 # graph = [list(map(int, si().split()))] for _ in range(n)
 graph = [[0] * (n + 1)]
 for _ in range(n):
-    graph.append([0] + list(map(int, si().split())))
+    graph.append([0] + list(map(int, input().split())))
 
-visited = [[False for _ in range(n + 1)] for _ in range(n + 1)]
+visited = [[False] * (n + 1) for _ in range(n + 1)]
 
-min_num = - sys.maxsize
-
+min_num = -100000
 
 def can_paint(r, c):
     flag = True
@@ -37,14 +32,14 @@ def find_permutation(curr_num):
     # n 개의 칸을 모두 색칠 했을 때,
     if curr_num == n + 1:
         # 조건 2) 색칠된 칸에 적힌 수들 중 최솟값이 최대가 되도록
-        local_min_num = min(permutation)
+        local_min_num = min(colored)
         min_num = max(min_num, local_min_num)
 
     else:
         # 1 부터 n * n 번째 칸 중 하나를 선택하여 색칠
         for i in range(1, n + 1):
             # 배열에 들어간 수가 이미 min_num 보다 작다면 나머지를 볼 필요가 없다.
-            if len(permutation) > 0 and min_num > min(permutation):
+            if len(colored) > 0 and min_num > min(colored):
                 return
             # 
             # 조건 1) 각 행과 열을 정확히 1개만 색칠해야함
@@ -53,10 +48,10 @@ def find_permutation(curr_num):
             
             visited[curr_num][i] = True
             # 색칠한 칸에 적힌 값 추가
-            permutation.append(graph[curr_num][i])
+            colored.append(graph[curr_num][i])
             # 다음 행으로 넘어감 
             find_permutation(curr_num + 1)
-            permutation.pop()
+            colored.pop()
             visited[curr_num][i] = False
             
 
