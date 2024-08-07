@@ -10,6 +10,9 @@ def make_dist(player, p_dist):
 make_dist(n, a_d)
 make_dist(m, b_d)
 
+a_d += [a_d[-1]] * (max_length - len(a_d))
+b_d += [b_d[-1]] * (max_length - len(b_d))
+
 compare = [a_d[i] - b_d[i] for i in range(len(a_d))][1:]
 answer = 0
 
