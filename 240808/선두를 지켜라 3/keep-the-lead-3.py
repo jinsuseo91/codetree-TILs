@@ -15,11 +15,13 @@ max_length = max(len(a_d), len(b_d))
 a_d += [a_d[-1]] * (max_length - len(a_d))
 b_d += [b_d[-1]] * (max_length - len(b_d))
 
-compare = [a_d[i] - b_d[i] for i in range(max_length)][1:]  # 첫번째 요소는 제외
-answer = 0
+# 두 사람이 동일한 위치에 있는지 확인하는 함수
+def check_meeting(a_d, b_d):
+    meet_count = 0
+    for i in range(1, len(a_d)):
+        if a_d[i] == b_d[i] or (a_d[i] - b_d[i]) * (a_d[i - 1] - b_d[i - 1]) < 0:
+            meet_count += 1
+    return meet_count
 
-for idx in range(1, len(compare)):
-    if compare[idx] * compare[idx - 1] <= 0:  # 방향이 바뀌는 순간을 체크
-        answer += 1
-
-print(answer)
+result = check_meeting(a_d, b_d)
+print(result)
