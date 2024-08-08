@@ -18,8 +18,7 @@ def dfs(x, y):
     global p
     dxs, dys = [1, 0], [0, 1]
     if x == n - 1 and y == m - 1:
-        p = 1
-        return
+        return 1
 
     for dx, dy in zip(dxs, dys):
         new_x, new_y = x + dx, y + dy
@@ -29,7 +28,6 @@ def dfs(x, y):
             dfs(new_x, new_y)
             visited[new_x][new_y] = False
 
-p = 0
 visited[0][0] = True
 dfs(0,0)
-print(p)
+print(1 if dfs(0, 0) else 0)
