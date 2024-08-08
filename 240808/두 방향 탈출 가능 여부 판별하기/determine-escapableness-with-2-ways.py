@@ -25,7 +25,7 @@ def dfs(x, y):
         new_x, new_y = x + dx, y + dy
 
         if can_go(new_x, new_y):
-            visited = True
+            visited[new_x][new_y] = True
             dfs(new_x, new_y)
 
 p = 0
