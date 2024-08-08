@@ -17,7 +17,7 @@ def can_go(x,y):
 def dfs(x, y):
     global p
     dxs, dys = [1, 0], [0, 1]
-    if x == n and y == m:
+    if x == n - 1 and y == m - 1:
         p = 1
         return
 
