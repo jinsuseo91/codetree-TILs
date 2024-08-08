@@ -10,26 +10,21 @@ def in_range(x, y):
 def can_go(x,y):
     if not in_range(x,y):
         return False
+
     if visited[x][y] or arr[x][y] == 0:
         return False
     return True
 
 def dfs(x, y):
-    global p
     dxs, dys = [1, 0], [0, 1]
-    if x == n - 1 and y == m - 1:
-        p = 1
-        return
 
     for dx, dy in zip(dxs, dys):
         new_x, new_y = x + dx, y + dy
 
         if can_go(new_x, new_y):
-            visited[new_x][new_y] = True
+            visited[new_x][new_y] = 1
             dfs(new_x, new_y)
-            visited[new_x][new_y] = False
 
-p = 0
 visited[0][0] = True
 dfs(0,0)
-print(p)
+print(visited[n-1][m-1])
