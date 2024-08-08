@@ -18,7 +18,8 @@ def dfs(x, y):
     global p
     dxs, dys = [1, 0], [0, 1]
     if x == n - 1 and y == m - 1:
-        return 1
+        p = 1
+        return
 
     for dx, dy in zip(dxs, dys):
         new_x, new_y = x + dx, y + dy
