@@ -28,6 +28,7 @@ def dfs(x, y):
             dfs(new_x, new_y)
             visited[new_x][new_y] = False
 
+p = 0
 visited[0][0] = True
 dfs(0,0)
-print(1 if dfs(0, 0) else 0)
+print(p)
