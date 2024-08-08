@@ -1,20 +1,43 @@
-N, M = map(int, input().split())
-a_dist, b_dist = [0], [0]
+from sys import stdin
+n, m = list(map(int, stdin.readline().split()))
+move_A = [list(map(int, stdin.readline().split())) for _ in range(n)]
+move_B = [list(map(int, stdin.readline().split())) for _ in range(m)]
 
-def make_dist(player, p_dist):
-    for i in range(player):
-        velocity, times = map(int, input().split())
-        for _ in range(times):
-            p_dist.append(velocity + p_dist[-1])
+cur_A = [0]*1000001
+cur_B = [0]*1000001
 
-make_dist(N, a_dist)
-make_dist(M, b_dist)
+time_A = 1
+for v, t in move_A:
+    for _ in range(t):
+        cur_A[time_A] = cur_A[time_A-1]+v
+        time_A += 1
+    
+time_B = 1
+for v, t in move_B:
+    for _ in range(t):
+        cur_B[time_B] = cur_B[time_B-1]+v
+        time_B += 1
+    
+#A가 총 이동한 시간과 B가 총 이동한 시간은 항상 동일하게 주어짐을 가정해도 좋습니다.
+#이 조건이 없다면 먼저 끝났을 때 마지막 위치를 다른 시간이 끝날 때까지 넣어줘야 함
 
-compare = [a_dist[i] - b_dist[i] for i in range(len(a_dist))][1:]
-answer = 0
+#가능한 값은 3가지로 A, B, (A,B)임, 상태가 3개이므로 깝치지 말고 상태로 정의하자
+cnt = 0
+key = 0 #-1, 0, 1상태, 처음은 같은 상태
+prev_key = -2
+for i in range(1, time_A): #time_A는 1이 증가된 상태임
+    if cur_A[i] > cur_B[i]: #순위가 바뀜!
+        key = -1
+    elif cur_A[i] == cur_B[i]:
+        key = 0
+    else:
+        key = 1
 
-for idx in range(1, len(compare)):
-    if compare[idx] * compare[idx - 1] <= 0:
-        answer += 1
+    # 이전 값과 다를 때만 cnt 증가
+    if key != prev_key:
+        cnt += 1
 
-print(answer)
+    # prev값 갱신    
+    prev_key = key
+
+print(cnt)
