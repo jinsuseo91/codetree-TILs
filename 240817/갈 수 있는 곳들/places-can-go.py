@@ -3,7 +3,6 @@ from collections import deque
 n, k = map(int, input().split())
 
 arr = [list(map(int, input().split())) for _ in range(n)]
-visited = [[0] * n for _ in range(n)]
 start = []
 q = deque()
 cnt = 0
@@ -30,6 +29,7 @@ def bfs():
 
 
 for i in range(k):
+    visited = [[0] * n for _ in range(n)]
     r, c = map(int, input().split())
     q.append((r - 1, c - 1))
     visited[r - 1][c - 1]
