@@ -6,7 +6,7 @@ arr = [list(map(int, input().split())) for _ in range(n)]
 visited = [[0] * n for _ in range(n)]
 start = []
 q = deque()
-cnt = 1
+cnt = 0
 
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < n
@@ -25,9 +25,9 @@ def bfs():
             nx, ny = x + dx, y + dy
 
             if can_go(nx, ny):
-                cnt += 1
                 visited[nx][ny] = 1
                 q.append((nx, ny))
+                cnt += 1
 
 for i in range(k):
     r, c = map(int, input().split())
@@ -35,4 +35,4 @@ for i in range(k):
     visited[r - 1][c - 1]
     bfs()
 
-print(cnt-1)
+print(cnt)
