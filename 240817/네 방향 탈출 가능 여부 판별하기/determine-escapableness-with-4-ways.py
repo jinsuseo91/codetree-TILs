@@ -25,16 +25,15 @@ def bfs():
 
             if can_go(nx, ny):
                 visited[nx][ny] = 1
-
                 q.append([nx, ny])
-            if nx == n - 1 and ny == m - 1:
-                check = 1
-                return check
-            else:
-                check = 0
-    return check
+    #         if nx == n - 1 and ny == m - 1:
+    #             check = 1
+    #             return check
+    #         else:
+    #             check = 0
+    # return check
 
 q.append((0, 0))
-visited[0][0] = True
+visited[0][0] = 1
 result = bfs()
-print(result)
+print(visited[n-1][m-1])
