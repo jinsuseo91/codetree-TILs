@@ -19,11 +19,11 @@ def bfs():
         for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
 
-            if can_go(nx, ny):
+            if in_range(nx, ny) and arr[nx][ny] == 1 and not visited[nx][ny]:
                 visited[nx][ny] = 1
                 q.append((nx, ny))
 
-q.append((0, 0))
 visited[0][0] = 1
+q.append((0, 0))
 bfs()
 print(visited[n-1][m-1])
