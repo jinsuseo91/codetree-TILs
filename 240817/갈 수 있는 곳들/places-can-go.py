@@ -6,7 +6,7 @@ arr = [list(map(int, input().split())) for _ in range(n)]
 visited = [[0] * n for _ in range(n)]
 start = []
 q = deque()
-cnt = 0
+cnt = 1
 
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < n
@@ -35,4 +35,4 @@ for i in range(k):
     visited[r - 1][c - 1]
     bfs()
 
-print(cnt)
+print(cnt-1)
