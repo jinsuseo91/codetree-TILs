@@ -16,9 +16,14 @@ def can_go(x, y):
     return True
 
 def bfs():
+    global flag
     dxs, dys = [1, 0, -1], [0, 1, 0]
     while q:
         x, y = q.popleft()
+
+        if x == n - 1 and y == m - 1:
+            flag = True
+            break
 
         for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
@@ -26,14 +31,15 @@ def bfs():
             if can_go(nx, ny):
                 visited[nx][ny] = 1
                 q.append([nx, ny])
-    #         if nx == n - 1 and ny == m - 1:
-    #             check = 1
-    #             return check
-    #         else:
-    #             check = 0
-    # return check
+        if len(q) == 0:
+            break
 
+    if flag:
+        return 1
+    return 0
+
+flag = True
 q.append((0, 0))
 visited[0][0] = 1
 bfs()
-print(visited[n-1][m-1])
+print(bfs())
