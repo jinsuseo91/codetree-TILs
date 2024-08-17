@@ -35,5 +35,5 @@ def bfs():
 
 q.append((0, 0))
 visited[0][0] = 1
-result = bfs()
+bfs()
 print(visited[n-1][m-1])
