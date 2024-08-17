@@ -2,7 +2,7 @@ from collections import deque
 
 n, m = map(int, input().split())
 arr = [list(map(int,input().split())) for _ in range(n)]
-visited = [[0] * n for _ in range(n)]
+visited = [[0] * m for _ in range(n)]
 q = deque()
 
 def in_range(x, y):
