@@ -24,7 +24,7 @@ def bfs():
             nx, ny = x + dx, y + dy
 
             if can_go(nx, ny):
-                visited[nx][ny] = True
+                visited[nx][ny] = 1
 
                 q.append([nx, ny])
             if nx == n - 1 and ny == m - 1:
