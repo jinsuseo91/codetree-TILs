@@ -12,14 +12,14 @@ def can_go(x, y):
     return in_range(x, y) and arr[x][y] == 1 and visited[x][y] == 0
 
 def bfs():
-    dxs, dys = [1, 0, -1], [0, 1, 0]
+    dxs, dys = [1, 0, -1, 0], [0, 1, 0, -1]
     while q:
         x, y = q.popleft()
 
         for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
 
-            if in_range(nx, ny) and arr[nx][ny] == 1 and not visited[nx][ny]:
+            if can_go(nx, ny):
                 visited[nx][ny] = 1
                 q.append((nx, ny))
 
