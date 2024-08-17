@@ -27,7 +27,7 @@ def bfs():
             if can_go(nx, ny):
                 visited[nx][ny] = 1
                 q.append((nx, ny))
-
+                cnt += 1
 
 for i in range(k):
     r, c = map(int, input().split())
@@ -35,9 +35,9 @@ for i in range(k):
     visited[r - 1][c - 1] = 1
     bfs()
 
-for visit in visited:
-    for v in visit:
-        if v:
-            cnt += 1
+# for visit in visited:
+#     for v in visit:
+#         if v:
+#             cnt += 1
 
 print(cnt)
