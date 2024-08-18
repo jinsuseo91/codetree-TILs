@@ -37,8 +37,9 @@ def bfs(city):
                 q.append((nx, ny))
                 cnt += 1
     return cnt
+a = list(combinations(coordinates, k))
 
-for city in combinations(coordinates, k):
+for city in a:
     max_ = max(max_, bfs(city))
 
 print(max_)
