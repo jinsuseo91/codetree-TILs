@@ -16,7 +16,7 @@ def bfs(grid):
     dxs, dys = [0, 1, 0, -1], [1, 0, -1, 0]
     visited = [[0] * n for _ in range(n)]
     for x, y in start:
-        visited[x][y] = 1
+        visited[x-1][y-1] = 1
 
     cnt = 1
     while q:
