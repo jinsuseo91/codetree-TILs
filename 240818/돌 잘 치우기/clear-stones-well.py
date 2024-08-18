@@ -16,13 +16,13 @@ def bfs(grid):
     dxs, dys = [0, 1, 0, -1], [1, 0, -1, 0]
     visited = [[0] * n for _ in range(n)]
     cnt = 0
+    # 시작점도 큐에 다 넣어주고 해야함
     for x, y in start:
         x -= 1
         y -= 1
         visited[x][y] = 1
         q.append((x, y))
         cnt += 1
-
 
     while q:
         x, y = q.popleft()
@@ -46,7 +46,7 @@ one_list = list(combinations(all_1, m))
 
 # 각 조합에 대해 돌을 치우고 bfs 실행
 max_ = 0
-for removed_ in one_list:
+for removed_ in combinations(all_1, m):
     arr_copy = [row[:] for row in arr]
 
     for x, y in removed_:
