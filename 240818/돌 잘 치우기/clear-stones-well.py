@@ -15,10 +15,15 @@ def bfs(grid):
     q = deque(start)
     dxs, dys = [0, 1, 0, -1], [1, 0, -1, 0]
     visited = [[0] * n for _ in range(n)]
+    cnt = 0
     for x, y in start:
-        visited[x-1][y-1] = 1
+        x -= 1
+        y -= 1
+        visited[x][y] = 1
+        q.append((x, y))
+        cnt += 1
 
-    cnt = len(start)
+
     while q:
         x, y = q.popleft()
         
@@ -38,6 +43,7 @@ for i in range(n):
             all_1.append([i, j])
 
 one_list = list(combinations(all_1, m))
+
 # 각 조합에 대해 돌을 치우고 bfs 실행
 max_ = 0
 for removed_ in one_list:
