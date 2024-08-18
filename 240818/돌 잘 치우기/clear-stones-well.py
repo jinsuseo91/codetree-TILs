@@ -18,7 +18,7 @@ def bfs(grid):
     for x, y in start:
         visited[x-1][y-1] = 1
 
-    cnt = len(start)
+    cnt = m
     while q:
         x, y = q.popleft()
         
