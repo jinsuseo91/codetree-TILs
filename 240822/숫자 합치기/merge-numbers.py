@@ -6,6 +6,9 @@ arr.sort()
 cnt = 0
 result = []
 for i in range(n):
-    cnt += arr[i]
-    result.append(cnt)
-print(sum(result)-arr[0])
+    if i == 0:
+        cnt += arr[i]
+    else:            
+        cnt += arr[i]
+        result.append(cnt)
+print(sum(result))
