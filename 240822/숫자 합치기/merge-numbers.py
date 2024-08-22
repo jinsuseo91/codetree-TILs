@@ -4,11 +4,15 @@ arr = list(map(int,input().split()))
 
 arr.sort()
 cnt = 0
+tot = 0
 result = []
-for i in range(n):
-    if i == 0:
-        cnt += arr[i]
-    else:            
-        cnt += arr[i]
-        result.append(cnt)
-print(sum(result))
+
+while len(arr) > 1:
+    fi = arr.pop(0)
+    se = arr.pop(0)
+    cnt = fi + se
+    tot += cnt
+
+    arr.append(cnt)
+    arr.sort()
+print(tot)
