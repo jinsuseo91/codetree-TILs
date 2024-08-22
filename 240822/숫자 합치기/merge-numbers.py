@@ -1,18 +1,18 @@
-n = int(input())
+import heapq
 
+n = int(input())
 arr = list(map(int,input().split()))
 
-arr.sort()
-cnt = 0
-tot = 0
-result = []
+pq = []
+ans = 0
 
-while len(arr) > 1:
-    fi = arr.pop(0)
-    se = arr.pop(0)
-    cnt = fi + se
-    tot += cnt
+for elem in arr:
+    heapq.heappush(pq, elem)
 
-    arr.append(cnt)
-    arr.sort()
-print(tot)
+while len(pq) > 1:
+    fi = heapq.heappop(pq)
+    se = heapq.heappop(pq)
+    ans += fi + se
+    heapq.heappush(pq, fi + se)
+
+print(ans)
