@@ -8,7 +8,7 @@ for elem in arr:
     heapq.heappush(pq, -elem)
 
 while True:
-    if len(pq) == 0:
+    if len(pq) == 0 or pq[0] == 0:
         print(-1)
         break
     elif len(pq) == 1:
