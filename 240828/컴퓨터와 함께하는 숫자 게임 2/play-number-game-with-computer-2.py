@@ -22,5 +22,8 @@ def bina(target_num):
 while a <= b:
     target_num = a
     cnt = bina(target_num)
+    max_cnt = max(max_cnt, cnt)
+    min_cnt = min(min_cnt, cnt)
+    
     a += 1
 print(min_cnt, max_cnt)
