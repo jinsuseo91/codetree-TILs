@@ -1,22 +1,23 @@
-n, m = map(int, input().split())
-arr = list(map(int, input().split()))
-arr1 = list(map(int, input().split()))
+n, m = tuple(map(int, input().split()))
+arr = [0] + list(map(int, input().split()))
+querries = list(map(int, input().split()))
 
 def lower_bound(target):
-    left, right = 0, n - 1
-    min_idx = n
+    left, right = 1, n
+    min_idx = n + 1
     while left <= right:
         mid = (left + right) // 2
         if arr[mid] >= target:
-            min_idx = min(min_idx, mid)
             right = mid - 1
+            min_idx = min(min_idx, mid)
         else:
             left = mid + 1
+
     return min_idx
 
-for i in arr1:
-    lo = lower_bound(i)
-    if lo <= n and arr[lo] == i:
-        print(lo + 1)
+for querry in querries:
+    lo = lower_bound(querry)
+    if lo <= n and arr[lo] == querry:
+        print(lo)
     else:
         print(-1)
