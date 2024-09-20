@@ -4,8 +4,8 @@ left, right = 1, min_
 
 def is_possible(k):
     tot = k//3 + k//5 + k//15
-
     return k - tot
+    
 while left <= right:
     mid = (left + right) // 2
     if is_possible(mid) >= n:
