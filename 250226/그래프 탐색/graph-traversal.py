@@ -4,7 +4,7 @@ arr = [[] for _ in range(n + 1)]
 result = 0
 
 for _ in range(m):
-    s, e = map(int, input().split())
+    s, e = tuple(map(int, input().split()))
     arr[s].append(e)
     arr[e].append(s)
 
