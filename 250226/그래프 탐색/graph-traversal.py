@@ -1,4 +1,4 @@
-n, m = map(int, input().split())
+n, m = tuple(map(int, input().split()))
 visited = [False] * n
 arr = [[] for _ in range(n + 1)]
 result = 0
