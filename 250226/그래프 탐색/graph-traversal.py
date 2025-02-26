@@ -1,6 +1,3 @@
-import sys
-sys.setrecursionlimit(100000)
-input = sys.stdin.readline
 n, m = map(int, input().split())
 visited = [False] * n
 arr = [[] for _ in range(n + 1)]
