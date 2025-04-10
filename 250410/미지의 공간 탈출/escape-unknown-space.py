@@ -200,7 +200,7 @@ from collections import deque
 q = deque()
 
 cell_start = -1
-cell_ent = -1
+cell_end = -1
 #탈출 지점
 for i in range(N):
     for j in range(N):
