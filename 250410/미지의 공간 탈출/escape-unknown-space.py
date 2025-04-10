@@ -82,7 +82,7 @@ def build_graph(N, M):
                     nx, ny = i + dx[dd], j + dy[dd]
                     if nx < 0 or ny < 0 or nx >= M or ny >= M:
                         continue
-                    Graph[idx][dd] == TimeWallCellID[4][nx][ny]
+                    Graph[idx][dd] = TimeWallCellID[4][nx][ny]
 
     for i in range(M):
         idx = TimeWallCellID[4][i][M - 1]
