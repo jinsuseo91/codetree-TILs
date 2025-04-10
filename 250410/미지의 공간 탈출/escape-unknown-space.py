@@ -121,7 +121,7 @@ def build_graph(N, M):
     if timewallStarty + M < N: #평면도 범위안이면
         for i in range(M):
             idx = TimeWallCellID[0][M - 1][i]
-            idy = SpaceMapCellID[timewallStartx + M - 1 - i][timewallStarty + M]
+            idy = SpaceMapCellID[timewallStartx + (M - 1) - i][timewallStarty + M]
             Graph[idx][1] = idy
             Graph[idy][2] = idx
     if timewallStartx + M < N:
@@ -194,6 +194,13 @@ for i in range(1, E + 1):
     y = events[i].ypos
     idx = SpaceMapCellID[x][y]
     dist[idx] = INF
+
+for t in range(5):
+    for i in range(M):
+        for j in range(M):
+            if TimeWall[t][i][j] == 1:
+                idx = TimeWallCellID[t][i][j]
+                dist[idx] = INF
 
 from collections import deque
 
