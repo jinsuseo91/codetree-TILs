@@ -378,6 +378,10 @@ assert obstacle_grid[end_x][end_y] == 0, "종료 지점에 장애물이 있습�
 
 distance_grid = compute_distances(end_x, end_y, n, obstacle_grid)
 
+if distance_grid[start_x][start_y] == -1:
+    print("-1")
+    sys.exit()
+
 current_x, current_y = start_x, start_y  # 현재 플레이어의 위치
 
 sight_map = [[0 for _ in range(n)] for _ in range(n)]
