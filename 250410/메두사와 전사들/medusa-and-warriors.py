@@ -378,42 +378,45 @@ assert obstacle_grid[end_x][end_y] == 0, "종료 지점에 장애물이 있습�
 
 distance_grid = compute_distances(end_x, end_y, n, obstacle_grid)
 
-if distance_grid[start_x][start_y] == -1:
-    print("-1")
-    sys.exit()
-
 current_x, current_y = start_x, start_y  # 현재 플레이어의 위치
 
 sight_map = [[0 for _ in range(n)] for _ in range(n)]
 
 warrior_count_grid = update_warrior_count_grid(n, m, warrior_position)
 
-while True:
-    moved = False
+def simulate():
+    global current_x, current_y
+    if distance_grid[start_x][start_y] == -1:
+        print(-1)
+        return
 
-    for dx, dy in zip(dxs, dys):
-        nx, ny = current_x + dx, current_y + dy
-        if 0 <= nx < n and 0 <= ny < n:
-            if distance_grid[nx][ny] < distance_grid[current_x][current_y]:
-                current_x, current_y = nx, ny
-                moved = True
-                break
-    
-    if current_x == end_x and current_y == end_y:
-        print("0")
-        break
+    while True:
+        moved = False
 
-    for i in range(m):
-        if warrior_position[i][0] == current_x and warrior_position[i][1] == current_y:
-            warrior_position[i] = (-1, -1)
-    
-    warrior_count_grid = update_warrior_count_grid(n, m, warrior_position)
+        for dx, dy in zip(dxs, dys):
+            nx, ny = current_x + dx, current_y + dy
+            if 0 <= nx < n and 0 <= ny < n:
+                if distance_grid[nx][ny] < distance_grid[current_x][current_y]:
+                    current_x, current_y = nx, ny
+                    moved = True
+                    break
+        
+        if current_x == end_x and current_y == end_y:
+            print("0")
+            break
 
-    sight_coverage = choose_best_sight(current_x, current_y, n, warrior_count_grid, sight_map)
+        for i in range(m):
+            if warrior_position[i][0] == current_x and warrior_position[i][1] == current_y:
+                warrior_position[i] = (-1, -1)
+        
+        warrior_count_grid = update_warrior_count_grid(n, m, warrior_position)
 
-    warrior_moved, warriors_hit = move_warriors(current_x, current_y, n, m, warrior_position, sight_map)
+        sight_coverage = choose_best_sight(current_x, current_y, n, warrior_count_grid, sight_map)
 
-    warrior_count_grid = update_warrior_count_grid(n, m, warrior_position)
+        warrior_moved, warriors_hit = move_warriors(current_x, current_y, n, m, warrior_position, sight_map)
 
-    print(f"{warrior_moved} {sight_coverage} {warriors_hit}")
+        warrior_count_grid = update_warrior_count_grid(n, m, warrior_position)
 
+        print(f"{warrior_moved} {sight_coverage} {warriors_hit}")
+
+simulate()
