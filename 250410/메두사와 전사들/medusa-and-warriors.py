@@ -174,7 +174,7 @@ def sight_left(x, y, n, is_test, warrior_count_grid, sight_map):
 
         for j in range(x + 1, bottom + 1):
             if not sight_map[j][i] or warrior_count_grid[j][i]:
-                if j < n + 1:
+                if j < n - 1:
                     sight_map[j + 1][i - 1] = 0
                 sight_map[j][i - 1] = 0
 
