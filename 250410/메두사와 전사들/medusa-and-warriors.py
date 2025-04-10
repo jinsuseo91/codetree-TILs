@@ -1,45 +1,19 @@
 from collections import deque
 import sys
+
 INF = int(1e9) + 10
-input = sys.stdin.read
-data = input().split()
-idx = 0
-
-n = int(data[idx]); idx += 1  # 그리드 크기 N
-m = int(data[idx]); idx += 1  # 전사 수 M
-
-start_x = int(data[idx]); idx += 1
-start_y = int(data[idx]); idx += 1
-end_x = int(data[idx]); idx += 1
-end_y = int(data[idx]); idx += 1
-
-# 초기 전사 위치 입력
-warrior_position = []
-for _ in range(m):
-    x = int(data[idx]); idx += 1
-    y = int(data[idx]); idx += 1
-    warrior_position.append((x, y))
-
-# 장애물 그리드 입력
-obstacle_grid = []
-for _ in range(n):
-    row = []
-    for _ in range(n):
-        cell = int(data[idx]); idx += 1
-        row.append(cell)
-    obstacle_grid.append(row)
 
 dxs, dys = [-1, 1, 0, 0], [0, 0, -1, 1] #상하좌우 순서
 
 def cal_distance(a, b): #전사가 메두사한테 접근할 때 어디로 이동해야하는지 판단하려고 사용
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
-def bfs(x, y, n, obstacle_grid): #메두사의 최단거리
+def compute_distances(start_x, start_y, n, obstacle_grid): #메두사의 최단거리
     distance_grid = [[INF if obstacle_grid[i][j] else -1 for j in range(n)] for i in range(n)]
 
     q = deque()
-    q.append((x, y))
-    distance_grid[x][y] = 0
+    q.append((start_x, start_y))
+    distance_grid[start_x][start_y] = 0
 
     while q:
         current_x, current_y = q.popleft()
@@ -47,7 +21,7 @@ def bfs(x, y, n, obstacle_grid): #메두사의 최단거리
         for dx, dy in zip(dxs, dys):
             nx, ny = current_x + dx, current_y + dy
 
-            if 0 <= nx < n and 0 <= ny <n and distance_grid[nx][ny] == -1:
+            if 0 <= nx < n and 0 <= ny <n and not(distance_grid[nx][ny] != -1):
                 distance_grid[nx][ny] = distance_grid[current_x][current_y] + 1
                 q.append((nx, ny))
 
@@ -371,11 +345,38 @@ def update_warrior_count_grid(n, m, warrior_position):
 
     return warrior_count_grid
 
+input = sys.stdin.read
+data = input().split()
+idx = 0
+
+n = int(data[idx]); idx += 1  # 그리드 크기 N
+m = int(data[idx]); idx += 1  # 전사 수 M
+
+start_x = int(data[idx]); idx += 1
+start_y = int(data[idx]); idx += 1
+end_x = int(data[idx]); idx += 1
+end_y = int(data[idx]); idx += 1
+
+# 초기 전사 위치 입력
+warrior_position = []
+for _ in range(m):
+    x = int(data[idx]); idx += 1
+    y = int(data[idx]); idx += 1
+    warrior_position.append((x, y))
+
+# 장애물 그리드 입력
+obstacle_grid = []
+for _ in range(n):
+    row = []
+    for _ in range(n):
+        cell = int(data[idx]); idx += 1
+        row.append(cell)
+    obstacle_grid.append(row)
 
 assert obstacle_grid[start_x][start_y] == 0, "시작 지점에 장애물이 있습니다."
 assert obstacle_grid[end_x][end_y] == 0, "종료 지점에 장애물이 있습니다."
 
-distance_grid = bfs(end_x, end_y, n, obstacle_grid)
+distance_grid = compute_distances(end_x, end_y, n, obstacle_grid)
 
 current_x, current_y = start_x, start_y  # 현재 플레이어의 위치
 
@@ -411,3 +412,4 @@ while True:
     warrior_count_grid = update_warrior_count_grid(n, m, warrior_position)
 
     print(f"{warrior_moved} {sight_coverage} {warriors_hit}")
+
