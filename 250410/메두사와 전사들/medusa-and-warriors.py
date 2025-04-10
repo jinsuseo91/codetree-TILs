@@ -1,15 +1,33 @@
 from collections import deque
-
+import sys
 INF = int(1e9) + 10
+input = sys.stdin.read
+data = input().split()
+idx = 0
 
-n, m = map(int, input().split())
-start_x, start_y, end_x, end_y = map(int, input().split())
-a = list(map(int, input().split()))
+n = int(data[idx]); idx += 1  # 그리드 크기 N
+m = int(data[idx]); idx += 1  # 전사 수 M
+
+start_x = int(data[idx]); idx += 1
+start_y = int(data[idx]); idx += 1
+end_x = int(data[idx]); idx += 1
+end_y = int(data[idx]); idx += 1
+
+# 초기 전사 위치 입력
 warrior_position = []
-for i in range(0, 2 * m, 2):
-    warrior_position.append((a[i], a[i + 1]))
+for _ in range(m):
+    x = int(data[idx]); idx += 1
+    y = int(data[idx]); idx += 1
+    warrior_position.append((x, y))
 
-obstacle_grid = [list(map(int, input().split())) for _ in range(n)]
+# 장애물 그리드 입력
+obstacle_grid = []
+for _ in range(n):
+    row = []
+    for _ in range(n):
+        cell = int(data[idx]); idx += 1
+        row.append(cell)
+    obstacle_grid.append(row)
 
 dxs, dys = [-1, 1, 0, 0], [0, 0, -1, 1] #상하좌우 순서
 
