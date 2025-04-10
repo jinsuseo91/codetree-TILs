@@ -60,29 +60,28 @@ def build_graph(N, M):
                         continue
                     Graph[idx][dd] = SpaceMapCellID[nx][ny]
 
-        for t in range(4):
-            for i in range(M):
-                for j in range(M):
-                    idx = TimeWallCellID[t][i][j]
-                    for dd in range(4):
-                        nx, ny = i + dx[dd], j + dy[dd]
-                        if nx < 0 or nx >= M:
-                            continue
-                        if ny < 0:
-                            Graph[idx][dd] = TimeWallCellID[(t + 1)% 4][nx][M - 1]
-                        elif ny >= M:
-                            Graph[idx][dd] = TimeWallCellID[(t + 3)% 4][nx][0]
-                        else:
-                            Graph[idx][dd] = TimeWallCellID[t][nx][ny]
-
+    for t in range(4):
         for i in range(M):
             for j in range(M):
-                idx = TimeWallCellID[4][i][j]
+                idx = TimeWallCellID[t][i][j]
                 for dd in range(4):
                     nx, ny = i + dx[dd], j + dy[dd]
-                    if nx < 0 or ny < 0 or nx >= M or ny >= M:
+                    if nx < 0 or nx >= M:
                         continue
-                    Graph[idx][dd] = TimeWallCellID[4][nx][ny]
+                    if ny < 0:
+                        Graph[idx][dd] = TimeWallCellID[(t + 1)% 4][nx][M - 1]
+                    elif ny >= M:
+                        Graph[idx][dd] = TimeWallCellID[(t + 3)% 4][nx][0]
+                    else:
+                        Graph[idx][dd] = TimeWallCellID[t][nx][ny]
+    for i in range(M):
+        for j in range(M):
+            idx = TimeWallCellID[4][i][j]
+            for dd in range(4):
+                nx, ny = i + dx[dd], j + dy[dd]
+                if nx < 0 or ny < 0 or nx >= M or ny >= M:
+                    continue
+                Graph[idx][dd] = TimeWallCellID[4][nx][ny]
 
     for i in range(M):
         idx = TimeWallCellID[4][i][M - 1]
