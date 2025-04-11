@@ -25,7 +25,7 @@ def rotate_grid(grid, r, c, angle):
 
     return new_grid #회전된 그리드 반환
 
-def simulate(grid, side_nums):
+def simulate(grid, copy_side):
     #한 번의 회전 후 유물 제거 및 보충 시뮬레이션
     #find_and_remove(grid)를 호출해서 유물 제거 및 가치 더하기
     #refill_grid(grid, side_nums)를 호출해서 빈칸에 유물 추가
@@ -37,7 +37,7 @@ def simulate(grid, side_nums):
 
         if not removed:
             break
-        refill_grid(grid, side_nums)
+        refill_grid(grid, copy_side)
 
     return total_score #유물 가치 반환
 
@@ -78,7 +78,7 @@ def find_and_remove(grid):
 
     return removed, total_score
 
-def refill_grid(grid, side_nums):
+def refill_grid(grid, copy_side):
     #0으로 된 칸에 벽면 유물을 우선 순위에 따라 삽입
     #우선 순위 : 좌, 우, 하, 상
     n = len(grid)
@@ -92,8 +92,8 @@ def refill_grid(grid, side_nums):
     empty_cell .sort(key=lambda x : (x[1],  -x[0]))
 
     for x, y in empty_cell:
-        if side_nums:
-            grid[x][y] = side_nums.pop(0)
+        if copy_side:
+            grid[x][y] = copy_side.pop(0)
         else:
             break
 
@@ -110,9 +110,9 @@ def get_all_rotation_options(grid, side_nums):
                 copy_grid = [row[:] for row in grid]
                 rotated_grid = rotate_grid(copy_grid, r, c, angle)
 
-                copy_artifacts = side_nums[:]
+                copy_side = side_nums[:]
 
-                score = simulate(rotated_grid, copy_artifacts)
+                score = simulate(rotated_grid, copy_side)
 
                 if score > best_score:
                     best_score = score
