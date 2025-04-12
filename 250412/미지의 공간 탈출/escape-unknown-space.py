@@ -132,8 +132,7 @@ def bfs_2d(v, dist, si, sj, ei, ej):
             if 0 <= ni < N and 0 <= nj < N and arr[ni][nj] == 0 and v[ci][cj] + 1 < v[ni][nj]:
                 q.append((ni, nj))
                 v[ni][nj] = v[ci][cj] + 1
-    return -2
-
+    return -1
 
 # [1] 주요 위치 찾기
 # 3차원 시작, 3차원 끝, 2차원 시작, 2차원 끝
