@@ -117,7 +117,7 @@ for j, d in unit:
         # 같은 골렘 표시해주기
         arr[i + 1][j] = arr[i - 1][j] = num
         arr[i][j-1:j+2] = [num] * 3
-        num += 1
         exit_set.add((i + dxs[d], j + dys[d]))
+        num += 1
         ans += bfs(i, j)
 print(ans)
