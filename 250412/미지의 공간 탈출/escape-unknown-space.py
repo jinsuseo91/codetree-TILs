@@ -48,6 +48,7 @@ from collections import deque
 def bfs_3d(sk, si, sj, ek, ei, ej):
     q = deque()
     visited = [[[0] * M for _ in range(M)] for _ in range(5)]
+
     q.append((sk, si, sj))
     visited[sk][si][sj] = 1
 
@@ -58,7 +59,7 @@ def bfs_3d(sk, si, sj, ek, ei, ej):
             return visited[ck][ci][cj]
 
         #네 방향, 범위 내/범위 밖 -> 다른 평면 이동 처리
-        for di, dj in zip(dxs, dys):
+        for di,dj in ((-1,0),(1,0),(0,-1),(0,1)):
             ni, nj = ci + di, cj + dj
             #범위 밖일 때
             if ni < 0: #위쪽으로 이동할 때
@@ -117,42 +118,23 @@ def bfs_3d(sk, si, sj, ek, ei, ej):
                 visited[nk][ni][nj] = visited[ck][ci][cj] + 1
     return -1
 
-# def bfs_2d(v, dist, si, sj, ei, ej):
-#     q = deque()
-#     q.append((si, sj))
-#     v[si][sj] = dist
-# 
-#     while q:
-#         ci, cj = q.popleft()
-#         if (ci, cj) == (ei, ej):
-#             return v[ci][cj]
-# 
-#         for di, dj in zip(dxs, dys):
-#             ni, nj = ci + di, cj + dj
-#             if 0 <= ni < N and 0 <= nj < N and arr[ni][nj] == 0 and v[ci][cj] + 1 < v[ni][nj]:
-#                 q.append((ni, nj))
-#                 v[ni][nj] = v[ci][cj] + 1
-#     return -1
 def bfs_2d(v, dist, si, sj, ei, ej):
     q = deque()
-
-    q.append((si,sj))
-    v[si][sj]=dist
+    q.append((si, sj))
+    v[si][sj] = dist
 
     while q:
-        ci,cj = q.popleft()
-        if (ci,cj)==(ei,ej):
+        ci, cj = q.popleft()
+        if (ci, cj) == (ei, ej):
             return v[ci][cj]
 
-        # 네방향, 범위내, (미방문)/조건맞으면(길이고, v[ci][cj]+1<v[ni][nj])
-        for di,dj in ((-1,0),(1,0),(0,-1),(0,1)):
-            ni,nj = ci+di, cj+dj
-            if 0<=ni<N and 0<=nj<N and arr[ni][nj]==0 and v[ci][cj]+1<v[ni][nj]:
-                q.append((ni,nj))
-                v[ni][nj]=v[ci][cj]+1
-
-    # 목적지를 찾을 수 없는 경우
+        for di, dj in zip(dxs, dys):
+            ni, nj = ci + di, cj + dj
+            if 0 <= ni < N and 0 <= nj < N and arr[ni][nj] == 0 and v[ci][cj] + 1 < v[ni][nj]:
+                q.append((ni, nj))
+                v[ni][nj] = v[ci][cj] + 1
     return -1
+
 # [1] 주요 위치 찾기
 # 3차원 시작, 3차원 끝, 2차원 시작, 2차원 끝
 sk_3d, si_3d, sj_3d = find_3d_start()
