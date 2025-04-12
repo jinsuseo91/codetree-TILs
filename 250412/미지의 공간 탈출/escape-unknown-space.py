@@ -155,8 +155,8 @@ if dist != -1:
         for mul in range(1, N + 1):
             wi, wj = wi + di[wd], wj + dj[wd]
             if 0 <= wi < N and 0 <= wj < N and arr[wi][wj] == 0 and (wi, wj) != (ei, ej):
-                if v[wi][wj] > wv * mul
-                v[wi][wj] = wv * mul
+                if v[wi][wj] > wv * mul:
+                    v[wi][wj] = wv * mul
             else:
                 break
 
