@@ -69,16 +69,16 @@ dxs, dys = [-1, 0 , 1, 0], [0, 1, 0,-1]
 exit_set = set() #탈출구 정보 저장
 
 def bfs(i, j):
-    q = []
+    q = deque()
     visited = [[False] * (C + 2) for _ in range(R + 4)]
     max_ = 0
     q.append((i, j))
     visited[i][j] = True
 
     while q:
-        x, y = q.pop(0)
+        x, y = q.popleft()
         max_ = max(max_, x)
-        for dx, dy in zip(dxs, dys):
+        for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
             nx, ny = x + dx, y + dy
             if not visited[nx][ny] and (arr[x][y] == arr[nx][ny] or ((x, y) in exit_set and arr[nx][ny] > 1)): #+탈출구인데 다음 칸이 골렘일 경우 가능
                 q.append((nx, ny))
