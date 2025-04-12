@@ -155,11 +155,10 @@ if dist != -1:
         for mul in range(1, N + 1):
             wi, wj = wi + di[wd], wj + dj[wd]
             if 0 <= wi < N and 0 <= wj < N and arr[wi][wj] == 0 and (wi, wj) != (ei, ej):
+                if v[wi][wj] > wv * mul
                 v[wi][wj] = wv * mul
             else:
                 break
-
-
 
     # [4] 2차원 시작 위치에서 bfs로 탈출구 탐색(v에 적혀있는 값보다 작아야 통과)
     dist = bfs_2d(v, dist, si, sj, ei, ej)
