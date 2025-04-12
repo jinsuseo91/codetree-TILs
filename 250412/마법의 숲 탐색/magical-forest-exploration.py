@@ -78,7 +78,7 @@ def bfs(i, j):
     while q:
         x, y = q.popleft()
         max_ = max(max_, x)
-        for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+        for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
             if not visited[nx][ny] and (arr[x][y] == arr[nx][ny] or ((x, y) in exit_set and arr[nx][ny] > 1)): #+탈출구인데 다음 칸이 골렘일 경우 가능
                 q.append((nx, ny))
@@ -95,12 +95,12 @@ for j, d in unit:
         if arr[i + 2][j] + arr[i + 1][j - 1] + arr[i + 1][j + 1] == 0:
             i += 1
         # 오른쪽아래로
-        elif arr[i][j + 2] + arr[i - 1][j + 1] + arr[i + 1][j + 1] + arr[i + 1][j + 2] + arr[i + 2][j + 1] == 0:
+        elif (arr[i][j + 2] + arr[i - 1][j + 1] + arr[i + 1][j + 1] + arr[i + 1][j + 2] + arr[i + 2][j + 1]) == 0:
             i += 1
             j += 1
             d = (d + 1) % 4
         # 왼쪽아래로
-        elif arr[i][j - 2] + arr[i - 1][j - 1] + arr[i + 1][j - 1] + arr[i + 1][j - 2] + arr[i + 2][j - 1] == 0:
+        elif (arr[i][j - 2] + arr[i - 1][j - 1] + arr[i + 1][j - 1] + arr[i + 1][j - 2] + arr[i + 2][j - 1]) == 0:
             i += 1
             j -= 1
             d = (d - 1) % 4
