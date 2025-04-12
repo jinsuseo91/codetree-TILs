@@ -84,41 +84,51 @@ def bfs_3d(sk, si, sj, ek, ei, ej):
                     ni = 0
                     nj = (M - 1) - cj
 
-            elif ni >= M: #아래쪽
-                if ck == 4:
-                    nk = 2
-                    ni = 0
-                    nj = cj
+            # elif ni >= M: #아래쪽
+            #     if ck == 4:
+            #         nk = 2
+            #         ni = 0
+            #         nj = cj
+            #     else:
+            #         continue
+            # elif nj < 0: #왼쪽
+            #     if ck == 4:
+            #         nk = 1
+            #         ni = 0
+            #         nj = ci
+            #     else:
+            #         nk = left_nxt[ck]
+            #         ni = ci
+            #         nj = M - 1
+            # elif nj >= M: #오른쪽
+            #     if ck == 4:
+            #         nk = 0
+            #         ni = 0
+            #         nj = (M - 1) - cj
+            #     else:
+            #         nk = right_nxt[ck]
+            #         ni = ci
+            #         nj = 0
+            # else:
+            #     nk = ck
+            elif ni>=M: # 아래쪽 범위이탈
+                if ck==4:   nk,ni,nj = 2,0,cj
+                else:       continue
+            elif nj<0:  # 왼쪽 범위이탈
+                if ck==4:   nk,ni,nj = 1,0,ci
                 else:
-                    continue
-            elif nj < 0: #왼쪽
-                if ck == 4:
-                    nk = 1
-                    ni = 0
-                    nj = ci
+                    nk,ni,nj = left_nxt[ck],ci,M-1
+            elif nj>=M: # 오른쪽 범위이탈
+                if ck==4:   nk,ni,nj = 0,0,(M-1)-ci
                 else:
-                    nk = left_nxt[ck]
-                    ni = ci
-                    nj = M - 1
-            elif nj >= M: #오른쪽
-                if ck == 4:
-                    nk = 0
-                    ni = 0
-                    nj = (M - 1) - cj
-                else:
-                    nk = right_nxt[ck]
-                    ni = ci
-                    nj = 0
-            else:
-                nk = ck
+                    nk,ni,nj = right_nxt[ck],ci,0
+            else:       # 이탈아니면 같은 평면
+                nk=ck
 
-            # #미방문, 조건에 맞으면
-            # if v[nk][ni][nj] == 0 and arr3[nk][ni][nj] == 0:
-            #     q.append((nk, ni, nj))
-            #     v[nk][ni][nj] = v[ck][ci][cj] + 1
-            if v[nk][ni][nj]==0 and arr3[nk][ni][nj]==0:
-                q.append((nk,ni,nj))
-                v[nk][ni][nj]=v[ck][ci][cj]+1
+            #미방문, 조건에 맞으면
+            if v[nk][ni][nj] == 0 and arr3[nk][ni][nj] == 0:
+                q.append((nk, ni, nj))
+                v[nk][ni][nj] = v[ck][ci][cj] + 1
     return -1
 
 def bfs_2d(v, dist, si, sj, ei, ej):
