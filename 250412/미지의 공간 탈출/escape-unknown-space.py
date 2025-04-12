@@ -23,7 +23,6 @@ def find_3d_base():
             if arr[i][j] == 3:
                 return i, j
 
-
 def find_3d_end_2d_start():
     bi, bj = find_3d_base()
 
@@ -133,7 +132,7 @@ def bfs_2d(v, dist, si, sj, ei, ej):
             if 0 <= ni < N and 0 <= nj < N and arr[ni][nj] == 0 and v[ci][cj] + 1 < v[ni][nj]:
                 q.append((ni, nj))
                 v[ni][nj] = v[ci][cj] + 1
-    return -1
+    return -2
 
 
 # [1] 주요 위치 찾기
