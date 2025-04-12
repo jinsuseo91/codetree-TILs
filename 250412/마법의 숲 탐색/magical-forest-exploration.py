@@ -69,14 +69,14 @@ dxs, dys = [-1, 0 , 1, 0], [0, 1, 0,-1]
 exit_set = set() #탈출구 정보 저장
 
 def bfs(i, j):
-    q = deque()
+    q = []
     visited = [[False] * (C + 2) for _ in range(R + 4)]
     max_ = 0
     q.append((i, j))
     visited[i][j] = True
 
     while q:
-        x, y = q.popleft()
+        x, y = q.pop(0)
         max_ = max(max_, x)
         for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
