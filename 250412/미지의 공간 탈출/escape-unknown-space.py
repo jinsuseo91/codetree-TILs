@@ -47,49 +47,43 @@ right_nxt = {0:3, 2:0, 1:2, 3:1}
 from collections import deque
 def bfs_3d(sk, si, sj, ek, ei, ej):
     q = deque()
-    visited = [[[0] * M for _ in range(M)] for _ in range(5)]
+    v = [[[0] * M for _ in range(M)] for _ in range(5)]
 
     q.append((sk, si, sj))
-    visited[sk][si][sj] = 1
+    v[sk][si][sj] = 1
 
     while q:
         ck, ci, cj = q.popleft()
 
         if (ck, ci, cj) == (ek, ei, ej):
-            return visited[ck][ci][cj]
+            return v[ck][ci][cj]
 
         #네 방향, 범위 내/범위 밖 -> 다른 평면 이동 처리
         for di, dj in zip(dxs, dys):
             ni, nj = ci + di, cj + dj
             #범위 밖일 때
-            # if ni < 0: #위쪽으로 이동할 때
-            #     if ck == 0: #현재 우측 평면일 때
-            #         nk = 4
-            #         ni = (M - 1) - cj
-            #         nj = M - 1
-            #     elif ck == 1: #현재 좌측평면일 때
-            #         nk = 4
-            #         ni = cj
-            #         nj = 0
-            #     elif ck == 2: #현재 남측
-            #         nk = 4
-            #         ni = M - 1
-            #         nj = cj
-            #     elif ck == 3:
-            #         nk = 4
-            #         ni = 0
-            #         nj = (M - 1) - cj
-            #     elif ck == 4:
-            #         nk = 3
-            #         ni = 0
-            #         nj = (M - 1) - cj
-            if ni<0:    # 위쪽 범위 이탈
-                if ck==0:   nk,ni,nj = 4,(M-1)-cj,M-1
-                elif ck==1: nk,ni,nj = 4,cj,0
-                elif ck==2: nk,ni,nj = 4,M-1,cj
-                elif ck==3: nk,ni,nj = 4,0,(M-1)-cj
-                elif ck==4: nk,ni,nj = 3,0,(M-1)-cj
-                
+            if ni < 0: #위쪽으로 이동할 때
+                if ck == 0: #현재 우측 평면일 때
+                    nk = 4
+                    ni = (M - 1) - cj
+                    nj = M - 1
+                elif ck == 1: #현재 좌측평면일 때
+                    nk = 4
+                    ni = cj
+                    nj = 0
+                elif ck == 2: #현재 남측
+                    nk = 4
+                    ni = M - 1
+                    nj = cj
+                elif ck == 3:
+                    nk = 4
+                    ni = 0
+                    nj = (M - 1) - cj
+                elif ck == 4:
+                    nk = 3
+                    ni = 0
+                    nj = (M - 1) - cj
+
             elif ni >= M: #아래쪽
                 if ck == 4:
                     nk = 2
@@ -118,10 +112,13 @@ def bfs_3d(sk, si, sj, ek, ei, ej):
             else:
                 nk = ck
 
-            #미방문, 조건에 맞으면
-            if visited[nk][ni][nj] == 0 and arr3[nk][ni][nj] == 0:
-                q.append((nk, ni, nj))
-                visited[nk][ni][nj] = visited[ck][ci][cj] + 1
+            # #미방문, 조건에 맞으면
+            # if v[nk][ni][nj] == 0 and arr3[nk][ni][nj] == 0:
+            #     q.append((nk, ni, nj))
+            #     v[nk][ni][nj] = v[ck][ci][cj] + 1
+            if v[nk][ni][nj]==0 and arr3[nk][ni][nj]==0:
+                q.append((nk,ni,nj))
+                v[nk][ni][nj]=v[ck][ci][cj]+1
     return -1
 
 def bfs_2d(v, dist, si, sj, ei, ej):
