@@ -8,6 +8,6 @@ if n == 0:
         print("BOY")
 else:
     if m >= 19:
-        print("MAN")
+        print("WOMAN")
     else:
         print("GIRL")
