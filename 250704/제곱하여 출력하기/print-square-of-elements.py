@@ -1,3 +1,5 @@
 n = int(input())
-a, b, c = map(int, input().split())
-print(a**2, b **2, c**2)
+arr = list(map(int, input().split()))
+
+for i in arr:
+    print(i**2, end =' ')
