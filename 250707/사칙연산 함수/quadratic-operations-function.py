@@ -14,5 +14,7 @@ def func(a, c, o):
         return a * c
     elif o == '/':
         return a // c
-
-print(a, o, c, "=", func(a, c, o))
+if func(a, c, o):
+    print(a, o, c, "=", func(a, c, o))
+else:
+    print("False")
