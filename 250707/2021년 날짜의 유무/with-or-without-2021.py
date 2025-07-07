@@ -11,7 +11,7 @@ def calendar(m, d):
             return False
         else:
             return True
-    else:
+    elif m in [4,6,9,11]:
         if d < 31:
             return True
         else:
