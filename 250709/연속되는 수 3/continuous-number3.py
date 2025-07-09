@@ -1,9 +1,8 @@
 n = int(input())
-arr = (int(input()) for _ in range(n))
+arr = [int(input()) for _ in range(n)]
 
 max_ = 0
 cnt = 1
-arr = list(arr)
 
 for i in range(n):
     if arr[i] > 0:
